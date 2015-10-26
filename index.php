@@ -1,6 +1,7 @@
 <?php
-print "Hello World";
- ?>
+print "My first PHP script!";
+?>
+
 <html>
 <head><title>Best page</title>
 </head>
