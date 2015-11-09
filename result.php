@@ -45,6 +45,7 @@ $result = $s3->putObject([
     'ACL' => 'public-read',
     'Bucket' => $bucket,
    'Key' => $uploadfile
+	'SourceFile' => $uploadfile
 ]); 
 
 $url = $result['ObjectURL'];
@@ -68,8 +69,7 @@ $result = $rds->describeDBInstances([
 $endpoint = $result['DBInstances']['Endpoint']['Address'];
     echo "============\n". $endpoint . "================";
 //echo "begin database";^M
-$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("
- " . mysqli_error($link));
+$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error" . mysqli_error($link));
 /* check connection */
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
