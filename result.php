@@ -67,14 +67,16 @@ $result = $rds->describeDBInstances([
 $endpoint = $result['DBInstances']['Endpoint']['Address'];
     echo "============\n". $endpoint . "================";
 //echo "begin database";^M
-$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error " . mysqli_error($link));
+$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("
+
+ " . mysqli_error($link));
 /* check connection */
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $link->prepare("INSERT INTO items (id, email,phone,filename,s3rawurl,s3finishedurl,status,issubscribed) VALUES (NULL,?,?,?,?,?,?,?)"))) {
+if (!($stmt = $link->prepare("INSERT INTO items (id, email,phone,filename,s3rawurl,s3finishedurl,status,issubscribed) VALUES (NULL,?,?,?,?,?,?,?)"))) {	
     echo "Prepare failed: (" . $link->errno . ") " . $link->error;
 }
 $email = $_POST['useremail'];
@@ -98,6 +100,8 @@ while ($row = $res->fetch_assoc()) {
     echo $row['id'] . " " . $row['email']. " " . $row['phone'];
 }
 $link->close();
+
+echo "Please click here to select the RAW S3 URL and displays images in a gallery format for all users <a href='gallery.php' title='Page to go to' class='whatEver'>Anchor text</a>";
 //add code to detect if subscribed to SNS topic 
 //if not subscribed then subscribe the user and UPDATE the column in the database with a new value 0 to 1 so that then each time you don't have to resubscribe them
 // add code to generate SQS Message with a value of the ID returned from the most recent inserted piece of work
