@@ -5,6 +5,11 @@ $rds = new Aws\Rds\RdsClient([
     'version' => 'latest',
     'region'  => 'us-east-1'
 ]);
+
+$s3 = new Aws\S3\S3Client([
+    'version' => 'latest',
+    'region'  => 'us-east-1'
+]);
 $result = $rds->createDBInstance([
     'AllocatedStorage' => 10,
     #'AutoMinorVersionUpgrade' => true || false,
@@ -24,7 +29,7 @@ $result = $rds->createDBInstance([
     #'Iops' => <integer>,
     #'KmsKeyId' => '<string>',
    # 'LicenseModel' => '<string>',
-  'MasterUserPassword' => 'letmein',
+  'MasterUserPassword' => 'ilovebunnies',
     'MasterUsername' => 'controller',
     #'MultiAZ' => true || false,
     #'OptionGroupName' => '<string>',
