@@ -22,7 +22,7 @@ $s3 = new Aws\S3\S3Client([
     'version' => 'latest',
     'region'  => 'us-east-1'
 ]);
-$bucket = uniqid("php-pvp",false);
+$bucket = uniqid("php-pv-",false);
 #$result = $client->createBucket(array(
 #    'Bucket' => $bucket
 #));
@@ -64,8 +64,8 @@ $result = $rds->describeDBInstances([
    # 'Marker' => '<string>',
    # 'MaxRecords' => <integer>,
 ]);
-$endpoint = $result['DBInstances']['Endpoint']['Address']
-    echo "============\n". $endpoint . "================";^M
+$endpoint = $result['DBInstances']['Endpoint']['Address'];
+    echo "============\n". $endpoint . "================";
 //echo "begin database";^M
 $link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error " . mysqli_error($link));
 /* check connection */
