@@ -50,6 +50,7 @@ $result = $s3->putObject([
 
 $url = $result['ObjectURL'];
 echo $url;
+
 $rds = new Aws\Rds\RdsClient([
     'version' => 'latest',
     'region'  => 'us-east-1'
@@ -68,8 +69,9 @@ $result = $rds->describeDBInstances([
 ]);
 $endpoint = $result['DBInstances']['Endpoint']['Address'];
     echo "============\n". $endpoint . "================";
-//echo "begin database";^M
-$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error" . mysqli_error($link));
+//echo "begin database";
+
+$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error" . mysqli_connect_error($link));
 /* check connection */
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
