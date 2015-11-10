@@ -1,7 +1,8 @@
 <?php
-// Start the session^M
+// Include the SDK using the Composer autoloader
 require 'vendor/autoload.php';
-$rds = new Aws\Rds\RdsClient([
+
+$s3 = new Aws\S3\S3Client([
     'version' => 'latest',
     'region'  => 'us-east-1'
 ]);
