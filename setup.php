@@ -20,7 +20,7 @@ $result = $rds->createDBInstance([
    # 'CopyTagsToSnapshot' => true || false,
    # 'DBClusterIdentifier' => '<string>',
     'DBInstanceClass' => 'db.t1.micro', // REQUIRED
-    'DBInstanceIdentifier' => 'pvp-db-mp1', // REQUIRED
+    'DBInstanceIdentifier' => 'pvp-db-mp', // REQUIRED
     'DBName' => 'customerrecords',
     #'DBParameterGroupName' => '<string>',
     #'DBSecurityGroups' => ['<string>', ...],
@@ -53,11 +53,11 @@ $result = $rds->createDBInstance([
 ]);
 print "Create RDS DB results: \n";
 # print_r($rds);
-$result = $rds->waitUntil('DBInstanceAvailable',['DBInstanceIdentifier' => 'pvp-db-mp1',
+$result = $rds->waitUntil('DBInstanceAvailable',['DBInstanceIdentifier' => 'pvp-db-mp',
 ]);
 // Create a table 
 $result = $rds->describeDBInstances([
-    'DBInstanceIdentifier' => 'pvp-db-mp1',
+    'DBInstanceIdentifier' => 'pvp-db-mp',
 ]);
 $endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
 print "============\n". $endpoint . "================\n";
