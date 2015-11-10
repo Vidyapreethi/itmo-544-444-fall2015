@@ -56,7 +56,7 @@ $rds = new Aws\Rds\RdsClient([
     'region'  => 'us-east-1'
 ]);
 $result = $rds->describeDBInstances([
-    'DBInstanceIdentifier' => 'pvp-db',
+    'DBInstanceIdentifier' => 'pvp-db-mp',
     #'Filters' => [
     #    [
     #        'Name' => '<string>', // REQUIRED
