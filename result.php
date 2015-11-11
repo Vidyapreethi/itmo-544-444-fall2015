@@ -68,7 +68,7 @@ $result = $rds->describeDBInstances([
    # 'MaxRecords' => <integer>,
 ]);
 $endpoint = $result['DBInstances']['Endpoint']['Address'];
-    echo "============\n". $endpoint . "================";
+    echo "<p>============</p>". $endpoint . "<p>================</p>";
 //echo "begin database";
 
 $link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error" . mysqli_connect_error($link));
