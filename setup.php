@@ -18,8 +18,8 @@ $result = $rds->describeDBInstances([
 $endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
 print "============\n". $endpoint . "================\n";
 
-$link = mysqli_connect($endpoint,"controller","ilovebunnies","3306") or die("Error " . mysqli_connect_error($link));  
-echo "Here is the result: " . $link;
+$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error " . mysqli_connect_error($link));  
+#echo "Here is the result: " . $link;
 $sql = "CREATE TABLE comments 
 (
 ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -27,5 +27,13 @@ PosterName VARCHAR(32),
 Title VARCHAR(32),
 Content VARCHAR(500)
 )";
-$con->query($sql);
+$retVal = $link->query($sql);
+if($retVal === TRUE) {
+print "Table Created";
+} else {
+print "Could not create a table";
+}
+
+$link->close();
+print "\n";
 ?>
