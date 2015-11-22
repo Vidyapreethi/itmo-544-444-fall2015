@@ -22,6 +22,13 @@ $s3 = new Aws\S3\S3Client([
     'version' => 'latest',
     'region'  => 'us-east-1'
 ]);
+
+use Aws\Sns\SnsClient;
+$sns = SnsClient::factory(array(
+'version' => 'latest',
+'region' => 'us-east-1'
+));
+
 $bucket = uniqid("php-pv-",false);
 #$result = $client->createBucket(array(
 #    'Bucket' => $bucket
@@ -67,7 +74,7 @@ $result = $rds->describeDBInstances([
    # 'Marker' => '<string>',
    # 'MaxRecords' => <integer>,
 ]);
-$endpoint = $result['DBInstances']['Endpoint']['Address'];
+$endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
     echo "<p>============</p>". $endpoint . "<p>================</p>";
 //echo "begin database";
 
@@ -104,6 +111,30 @@ while ($row = $res->fetch_assoc()) {
 
 $link->close();
 //add code to detect if subscribed to SNS topic 
+
+// creating sns topic
+$topicArn = $sns->createTopic([
+'Name' => 'MP2-sns-test',
+]);
+
+echo "<p/>";
+echo "ARN is:";
+echo $topicArn['TopicArn'];
+
+$topicAttributes = $sns->setTopicAttributes([
+'AttributeName'=>'DisplayName',
+'AttributeValue'=>'MP2-alert',
+'topicArn'=>$topicArn['TopicArn'],
+]);
+
+$topicSubscribe = $sns->subscribe(array(
+    // TopicArn is required
+    'TopicArn' => $topicArn['TopicArn'],
+    // Protocol is required
+    'Protocol' => 'email',
+    'Endpoint' => $email,
+));
+
 //if not subscribed then subscribe the user and UPDATE the column in the database with a new value 0 to 1 so that then each time you don't have to resubscribe them
 // add code to generate SQS Message with a value of the ID returned from the most recent inserted piece of work
 //  Add code to update database to UPDATE status column to 1 (in progress)
