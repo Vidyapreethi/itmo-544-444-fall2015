@@ -122,9 +122,9 @@ echo "ARN is:";
 echo $topicArn['TopicArn'];
 
 $topicAttributes = $sns->setTopicAttributes([
+'TopicArn' => $topicArn['TopicArn'],
 'AttributeName'=>'DisplayName',
 'AttributeValue'=>'MP2-alert',
-'topicArn'=>$topicArn['TopicArn'],
 ]);
 
 $topicSubscribe = $sns->subscribe(array(
