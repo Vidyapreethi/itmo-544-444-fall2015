@@ -127,6 +127,9 @@ $topicAttributes = $sns->setTopicAttributes([
 'AttributeValue'=>'MP2-alert',
 ]);
 
+echo "<p/>";
+echo "Created display name";
+
 $topicSubscribe = $sns->subscribe(array(
     // TopicArn is required
     'TopicArn' => $topicArn['TopicArn'],
@@ -134,6 +137,20 @@ $topicSubscribe = $sns->subscribe(array(
     'Protocol' => 'email',
     'Endpoint' => $email,
 ));
+
+echo "<p/>";
+echo "Please check your email and confirm subsciption";
+
+$topicResult = $sns->publish(array(
+    'TopicArn' => $topicArn['TopicArn'],
+    'TargetArn' => $topicArn['TopicArn'],
+
+    'Message' => 'S3 bucket successfully created',
+    'Subject' => 'Important-regarding S3',
+
+));
+echo "Published email.Please check your email";
+
 
 //if not subscribed then subscribe the user and UPDATE the column in the database with a new value 0 to 1 so that then each time you don't have to resubscribe them
 // add code to generate SQS Message with a value of the ID returned from the most recent inserted piece of work
