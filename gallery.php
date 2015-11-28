@@ -1,5 +1,12 @@
 <html>
 <head><title>Gallery</title>
+
+<!-- jQuery -->
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+  <!-- Fotorama -->
+  <link href="fotorama.css" rel="stylesheet">
+  <script src="fotorama.js"></script>
 </head>
 <body>
 
@@ -33,12 +40,15 @@ $link->real_query("SELECT * FROM items WHERE email = '$email'");
 //$link->real_query("SELECT * FROM items");
 $res = $link->use_result();
 echo "Result set order...\n";
+
 while ($row = $res->fetch_assoc()) {
-    
+   <div class="fotorama" data-width="700" data-ratio="700/467" data-max-width="100%"> 
     echo "<img src =\" " . $row['s3rawurl'] . "\" />";
+</div>
     //echo "<img src =\"" .$row['s3finishedurl'] . "\"/>";#Finished URL not set
     echo "<p>".$row['id'] . "Email: " . $row['email']."</p>";
 }
+
 $link->close();
 ?>
 </body>
