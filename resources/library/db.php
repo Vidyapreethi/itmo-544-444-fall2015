@@ -19,4 +19,40 @@ function getDbConn() {
 
         return $link;
 }
+
+function isSubscribed($email) {
+
+        $conn = getDbConn();
+
+		$sql = "SELECT * FROM ITEMS where EMAIL='".$email."' and ISSUBSCRIBED=1";
+		
+		$result = $conn->query($sql);
+		
+		$rows = $result->num_rows;
+		
+		$conn->close();
+		
+		if ($rows > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+}
+
+function setSubscribed($email) {
+
+        $conn = getDbConn();
+
+		$sql = "SELECT * FROM ITEMS where EMAIL='".$email."' and ISSUBSCRIBED=1";
+		
+		$sql = "UPDATE ITEMS SET ISSUBSCRIBED=1 WHERE EMAIL='".$email."'";
+
+		if ($conn->query($sql) === TRUE) {
+			echo "Record updated successfully";
+		} else {
+			echo "Error updating record: " . $conn->error;
+		}
+		
+		$conn->close();
+}
 ?>
