@@ -1,24 +1,10 @@
 <?php
 // Include the SDK using the Composer autoloader
 require 'vendor/autoload.php';
+require 'resources/library/db.php';
 
-$rds = new Aws\Rds\RdsClient([
-    'version' => 'latest',
-    'region'  => 'us-east-1'
-]);
-$s3 = new Aws\S3\S3Client([
-    'version' => 'latest',
-    'region'  => 'us-east-1'
-]);
+$link = getDbConn();
 
-// Create a table 
-$result = $rds->describeDBInstances([
-    'DBInstanceIdentifier' => 'pvp-db-mp',
-]);
-$endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
-print "============\n". $endpoint . "================\n";
-
-$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error " . mysqli_connect_error($link));  
 #echo "Here is the result: " . $link;
 $sql_comments = "CREATE TABLE comments 
 (

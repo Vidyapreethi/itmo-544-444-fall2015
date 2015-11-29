@@ -16,6 +16,8 @@ echo 'Here is some more debugging info:';
 print_r($_FILES);
 print "</pre>";
 require 'vendor/autoload.php';
+require 'resources/library/db.php';
+
 #use Aws\S3\S3Client;
 #$client = S3Client::factory();
 $s3 = new Aws\S3\S3Client([
@@ -58,32 +60,8 @@ $result = $s3->putObject([
 $url = $result['ObjectURL'];
 echo $url;
 
-$rds = new Aws\Rds\RdsClient([
-    'version' => 'latest',
-    'region'  => 'us-east-1'
-]);
-$result = $rds->describeDBInstances([
-    'DBInstanceIdentifier' => 'pvp-db-mp',
-    #'Filters' => [
-    #    [
-    #        'Name' => '<string>', // REQUIRED
-    #        'Values' => ['<string>', ...], // REQUIRED
-    #    ],
-        // ...
-   # ],
-   # 'Marker' => '<string>',
-   # 'MaxRecords' => <integer>,
-]);
-$endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
-    echo "<p>============</p>". $endpoint . "<p>================</p>";
-//echo "begin database";
+$link = getDbConn();
 
-$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error" . mysqli_connect_error($link));
-/* check connection */
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
-}
 /* Prepared statement, stage 1: prepare */
 if (!($stmt = $link->prepare("INSERT INTO items (id, email,phone,filename,s3rawurl,s3finishedurl,status,issubscribed) VALUES (NULL,?,?,?,?,?,?,?)"))) {	
     echo "Prepare failed: (" . $link->errno . ") " . $link->error;
