@@ -103,28 +103,50 @@ echo "ARN is:";
 echo $topicArn['TopicArn'];
 
 $topicAttributes = $sns->setTopicAttributes([
-'TopicArn' => $topicArn['TopicArn'],
-'AttributeName'=>'DisplayName',
-'AttributeValue'=>'MP2-alert',
-]);
+	'TopicArn' => $topicArn['TopicArn'],
+	'AttributeName'=>'DisplayName',
+	'AttributeValue'=>'MP2-alert',
+	]);
 
 echo "<p/>";
 echo "Created display name";
 
-$topicSubscribe = $sns->subscribe(array(
-    // TopicArn is required
-    'TopicArn' => $topicArn['TopicArn'],
-    // Protocol is required
-    'Protocol' => 'email',
-    'Endpoint' => $email,
-));
+if(isSubscribed($email)) {
+	echo "</p> The email: ".$email." is already subscribed";
+} else {
+	$listedSubscriptions = $sns->listSubscriptions(array(
+		//'NextToken' => 'string',
+	));
 
-echo "<p/>";
-echo "Please check your email and confirm subsciption";
+	echo $listedSubscriptions;
 
+	echo "</p> Subscriptions: ".$listedSubscriptions->get('Subscriptions');
+	echo "</p> TopicArn: ".$listedSubscriptions->get('TopicArn');
+
+	$topicSubscribe = $sns->subscribe(array(
+		// TopicArn is required
+		'TopicArn' => $topicArn['TopicArn'],
+		// Protocol is required
+		'Protocol' => 'email',
+		'Endpoint' => $email,
+	));
+
+	echo "<p/>";
+	echo "Please check your email and confirm subsciption";
+
+?>
+
+<form enctype="multipart/form-data" action="confirmsubscription.php" method="POST">
+    <input type="hidden" name="email" value="<?php echo $email; ?>">
+	Please press this button after confirming mail subscription 
+	<input type="submit" value="Confirm" />
+</form>
+
+<?php
+}
 $topicResult = $sns->publish(array(
     'TopicArn' => $topicArn['TopicArn'],
-    'TargetArn' => $topicArn['TopicArn'],
+//    'TargetArn' => $topicArn['TopicArn'],
 
     'Message' => 'S3 bucket successfully created',
     'Subject' => 'Important-regarding S3',
