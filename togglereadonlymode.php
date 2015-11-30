@@ -4,6 +4,6 @@ require 'resources/library/db.php';
 
 toggleMode();
 
-header('Location: /introspection.php');    
+header('Location: /introspection.php');
 
 ?>
