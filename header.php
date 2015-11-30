@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="/resources/css/foundation.css" />
         <link rel="stylesheet" href="/resources/css/foundation-mobile.css" />
         <script src="/resources/js/vendor/modernizr.js"></script>
+		<script src="/resources/js/vendor/jquery.js"></script>
+		<script src="/resources/js/foundation/foundation.js"></script>
+		<script src="/resources/js/foundation/foundation.topbar.js"></script>
     </head>
     <body>
         <nav class="top-bar" data-topbar role="navigation">

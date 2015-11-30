@@ -125,7 +125,7 @@ if(isSubscribed($email)) {
 	Please press this button after confirming mail subscription 
 	<input type="submit" value="Confirm" />
 </form>
-
+</p></p>
 <?php
 }
 $topicResult = $sns->publish(array(

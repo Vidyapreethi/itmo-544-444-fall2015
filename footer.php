@@ -1,7 +1,6 @@
 
-    <script src="/resources/js/vendor/jquery.js" />
-    <script src="/resources/js/foundation.min.js"></script>
-    <script>
+    
+	<script>
       $(document).foundation();
     </script>
     <div class="fixed-bottom">

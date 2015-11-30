@@ -1,6 +1,7 @@
 <?php
 include 'header.php';
 ?>
+</p></p>
 <form enctype="multipart/form-data" action="createsession.php" method="POST">
 	<div class="row">
 		<div class="small-8 columns">
