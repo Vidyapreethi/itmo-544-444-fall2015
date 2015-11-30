@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>IIT Bay</title>
+        <title>IIT Cloud Gallery</title>
         <link rel="stylesheet" href="/resources/css/foundation.css" />
         <link rel="stylesheet" href="/resources/css/foundation-mobile.css" />
         <link rel="stylesheet" href="css/foundation-mobile.css" />
@@ -13,7 +13,7 @@
         <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
                 <li class="name">
-                    <h1><a href="<c:url value="/" />">Online Shopping</a></h1>
+                    <h1><a href="logon.php">Cloud Gallery</a></h1>
                 </li>
                 <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
                 <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -26,11 +26,11 @@
                         <li class="has-dropdown">
                             <a href="#">Admin Actions</a>
                             <ul class="dropdown">
-                                <li><a href="<c:url value="/mycontrol/createBaseData" />">Init Base Data</a></li>
-                                <li><a href="<c:url value="/admin/new" />">Create Customer</a></li>
-                                <li><a href="<c:url value="/admin/newProduct" />">Create Product</a></li>
-                                <li><a href="<c:url value="/admin/allcustomers" />">View All Customer</a></li>
-                                <li><a href="<c:url value="/orders/all" />">All Orders</a></li>
+                                <li><a href="#">Init Base Data</a></li>
+                                <li><a href="#">Create Customer</a></li>
+                                <li><a href="#">Create Product</a></li>
+                                <li><a href="#">View All Customer</a></li>
+                                <li><a href="#">All Orders</a></li>
                             </ul>
                         </li>
                     
@@ -38,8 +38,8 @@
                         <li class="has-dropdown">
                             <a href="#">My Account</a>
                             <ul class="dropdown">
-                                <li><a href="account.php" />">Account Details</a></li>
-                                <li><a href="items.php" />">View Orders</a></li>
+                                <li><a href="account.php" >Account Details</a></li>
+                                <li><a href="items.php" >View Orders</a></li>
                             </ul>
                         </li>
                     
@@ -52,8 +52,8 @@
                     <li class="has-dropdown">
                         <a href="#">Shop</a>
                         <ul class="dropdown">
-                            <li><a href="#" />">All Products</a></li>
-                            <li><a href="#" />">All Departments</a></li>
+                            <li><a href="#" >All Products</a></li>
+                            <li><a href="#" >All Departments</a></li>
                         </ul>
                     </li>
                 </ul>
