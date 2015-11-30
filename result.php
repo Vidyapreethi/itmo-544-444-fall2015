@@ -56,6 +56,7 @@ $result = $s3->createBucket([
 $result = $s3->putObject([
     'ACL' => 'public-read',
     'Bucket' => $bucket,
+      'Expires' => gmdate("D, d M Y H:i:s T", strtotime("+1 day")),
    'Key' => $uploadfile,
 	'SourceFile' => $uploadfile 
 ]); 
@@ -152,6 +153,8 @@ $topicResult = $sns->publish(array(
     'Subject' => 'Important-regarding S3',
 
 ));
+echo "<p/>";
+
 echo "Published email.Please check your email";
 
 
