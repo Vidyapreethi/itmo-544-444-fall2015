@@ -32,8 +32,8 @@ $res = $link->use_result();
 echo "<p/>";
 echo "Result set order:\n";
 
-echo "<div class=\"fotorama\" data-width=\"700\" data-ratio=\"700/467\" data-max-width=\"100%\">";
-
+//echo "<div class=\"fotorama\" data-width=\"700\" data-ratio=\"700/467\" data-max-width=\"100%\">";
+echo "<div class=\"fotorama\">";
 while ($row = $res->fetch_assoc()) {
     
   echo "<img src =\" " . $row['s3rawurl'] . "\" />";
