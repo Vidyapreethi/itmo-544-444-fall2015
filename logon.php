@@ -8,7 +8,7 @@ include 'header.php';
 				<label for="username">User Id*</label>
 			</div>
 			<div class="small-9 columns">
-				<input type="text" id="username" placeholder="Enter Your User Name" />
+				<input type="text" id="username" name="username" placeholder="Enter Your User Name" />
 			</div>
 		</div>	
 	</div>
@@ -18,7 +18,7 @@ include 'header.php';
 				<label for="useremail">Email*</label>
 			</div>
 			<div class="small-9 columns">
-				<input type="text" id="useremail" placeholder="Enter Your Email Address" />
+				<input type="text" id="useremail" name="useremail" placeholder="Enter Your Email Address" />
 			</div>
 		</div>
 	</div>
@@ -28,20 +28,15 @@ include 'header.php';
 				<label for="phone">Phone*</label>
 			</div>
 			<div class="small-9 columns">
-				<input type="text" id="phone" placeholder="Enter Your Phone Number" />
+				<input type="text" id="phone" name="phone" placeholder="Enter Your Phone Number" />
 			</div>
 		</div>
     </div>
     <div class="row">
-        <div class="large-4 columns">
+        <div class="small-3 columns">
             <input class="button" type="submit" value="Logon" />
         </div>
     </div>
-<!--Enter Email of user: <input type="email" name="useremail"><br />
-Enter Phone of user (1-XXX-XXX-XXXX): <input type="phone" name="phone">
-
-
-<input type="submit" value="Logon" />-->
 </form>
 <?php
 include 'footer.php';

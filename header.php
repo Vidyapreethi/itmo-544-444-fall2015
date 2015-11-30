@@ -6,7 +6,6 @@
         <title>IIT Cloud Gallery</title>
         <link rel="stylesheet" href="/resources/css/foundation.css" />
         <link rel="stylesheet" href="/resources/css/foundation-mobile.css" />
-        <link rel="stylesheet" href="css/foundation-mobile.css" />
         <script src="/resources/js/vendor/modernizr.js"></script>
     </head>
     <body>
@@ -35,33 +34,25 @@
                             <a href="#">My Account</a>
                             <ul class="dropdown">
                                 <li><a href="account.php" >Account Details</a></li>
+								<li><a href="gallery.php" >My Gallery</a></li>
                                 <li><a href="items.php" >View All Uploads</a></li>
                             </ul>
                         </li>
                     
-                    <!--<li class="active"><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>-->
                     <li class="active"><a href="javascript:formSubmit()">Logout</a></li>
                 </ul>
 
+<?php
+$email = $_SESSION["email"];
+$uname = $_SESSION["uname"];
+?>				
                 <!-- Left Nav Section -->
                 <ul class="left">
-                    <li class="has-dropdown">
-                        <a href="#">Gallery</a>
-                        <ul class="dropdown">
-                            <li><a href="gallery.php" >My Gallery</a></li>
-                            <li><a href="gallery.php" >My Uploads</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="#">Welcome <?php echo $uname; ?>!!</a></li>
                 </ul>
 
             </section>
         </nav>     
-
-<?php
-$email = $_SESSION["email"];
-?>
-            <h2>Header Included</h2>
-            
 
         <form action="logout.php" method="post" id="logoutForm">
             <input type="hidden" 
