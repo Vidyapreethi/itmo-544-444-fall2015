@@ -26,11 +26,7 @@
                         <li class="has-dropdown">
                             <a href="#">Admin Actions</a>
                             <ul class="dropdown">
-                                <li><a href="#">Init Base Data</a></li>
-                                <li><a href="#">Create Customer</a></li>
-                                <li><a href="#">Create Product</a></li>
-                                <li><a href="#">View All Customer</a></li>
-                                <li><a href="#">All Orders</a></li>
+                                <li><a href="setup.php">Setup Database</a></li>
                             </ul>
                         </li>
                     
@@ -39,7 +35,7 @@
                             <a href="#">My Account</a>
                             <ul class="dropdown">
                                 <li><a href="account.php" >Account Details</a></li>
-                                <li><a href="items.php" >View Orders</a></li>
+                                <li><a href="items.php" >View All Uploads</a></li>
                             </ul>
                         </li>
                     
@@ -50,10 +46,10 @@
                 <!-- Left Nav Section -->
                 <ul class="left">
                     <li class="has-dropdown">
-                        <a href="#">Shop</a>
+                        <a href="#">Gallery</a>
                         <ul class="dropdown">
-                            <li><a href="#" >All Products</a></li>
-                            <li><a href="#" >All Departments</a></li>
+                            <li><a href="gallery.php" >My Gallery</a></li>
+                            <li><a href="gallery.php" >My Uploads</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'header.php';
 
 echo "</p> Created Session Variables</p>";

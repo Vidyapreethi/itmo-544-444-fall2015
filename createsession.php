@@ -1,6 +1,6 @@
 <?php 
 session_start(); 
-echo $_POST['useremail'];
+$_SESSION["uname"] = $_POST['username'];
 $_SESSION["email"] = $_POST['useremail'];
 $_SESSION["phone"] = $_POST['phone'];
 echo "Session variables are set.";
