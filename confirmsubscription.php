@@ -2,9 +2,13 @@
 require 'vendor/autoload.php';
 require 'resources/library/db.php';
 
-$email = $_POST['email'];
+session_start();
+$email = $_SESSION["email"];
 
 echo "Adding Email".$email." as a confirmed Subscriber to email alerts";
 
 setSubscribed($email);
+
+header('Location: /upload.php');    
+
 ?>

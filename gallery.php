@@ -1,20 +1,16 @@
-<html>
-<head><title>Gallery</title>
-
-<!-- jQuery -->
-  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-
-  <!-- Fotorama -->
-  <link href="resources/css/fotorama.css" rel="stylesheet">
-  <script src="resources/js/fotorama.js"></script>
-</head>
-
-<body>
-
 <?php
 session_start();
+include 'header.php';
+?>
+	<!-- jQuery -->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
-$email = $_POST["email"];
+	<!-- Fotorama -->
+	<link href="resources/css/fotorama.css" rel="stylesheet">
+	<script src="resources/js/fotorama.js"></script>
+  
+<?php
+$email = $_SESSION["email"];
 
 echo "Entered email:  ".$email;
 
@@ -26,7 +22,7 @@ $link = getDbConn();
 
 //below line is unsafe - $email is not checked for SQL injection -- don't do this in real life or use an ORM instead
 $link->real_query("SELECT * FROM items WHERE email = '$email'");
-//$link->real_query("SELECT * FROM items");
+
 $res = $link->use_result();
 
 echo "<p/>";
@@ -45,6 +41,5 @@ while ($row = $res->fetch_assoc()) {
 echo "</div>";
 
 $link->close();
+include 'footer.php';
 ?>
-</body>
-</html>
