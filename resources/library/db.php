@@ -57,4 +57,49 @@ function setSubscribed($email) {
 		
 	$conn->close();
 }
+
+function isReadOnlyMode() {
+
+    $conn = getDbConn();
+
+	$sql = "SELECT * FROM cloud_gallery_config WHERE config_key='IS_READ_ONLY_MODE' AND config_value='1'";
+	
+	$result = $conn->query($sql);
+		
+	$rows = $result->num_rows;
+	
+	$conn->close();
+		
+	if ($rows > 0) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+function toggleMode() {
+
+    $conn = getDbConn();
+
+	$sql = "SELECT * FROM cloud_gallery_config WHERE config_key='IS_READ_ONLY_MODE'";
+	
+	$result = $conn->query($sql);
+		
+	$rows = $result->num_rows;
+	
+	if($rows > 0) {
+		if(isReadOnlyMode()) {
+			$sql = "UPDATE cloud_gallery_config SET config_value='0' WHERE config_key='IS_READ_ONLY_MODE'";	
+		} else {
+			$sql = "UPDATE cloud_gallery_config SET config_value='1' WHERE config_key='IS_READ_ONLY_MODE'";	
+		}
+	} else {
+		$sql = "INSERT into cloud_gallery_config (config_key, config_value) VALUES ('IS_READ_ONLY_MODE', '1')";
+	}
+	
+
+	$conn->query($sql);
+		
+	$conn->close();
+}
 ?>

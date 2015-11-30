@@ -33,10 +33,24 @@ status TinyInt(3),
 issubscribed TinyInt(3)
 )";
 $retVal2 = $link->query($sql_items);
+
 if($retVal2 === TRUE) {
 print "Items Table Created";
 } else {
 print "Could not create Items table";
+}
+
+$sql_config = "CREATE TABLE cloud_gallery_config 
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+config_key Varchar(20),
+config_value Varchar(80), 
+)";
+$retVal3 = $link->query($sql_config);
+if($retVal3 === TRUE) {
+print "cloud_gallery_config Table Created";
+} else {
+print "Could not create cloud_gallery_config table";
 }
 
 $link->close();
