@@ -61,7 +61,9 @@
             </section>
         </nav>     
 
-        
+<?php
+$email = $_SESSION["email"];
+?>
             <h2>Header Included</h2>
             
 
