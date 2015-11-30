@@ -1,5 +1,5 @@
 
-    
+    </p></p></p>
 	<script>
       $(document).foundation();
     </script>
@@ -8,7 +8,7 @@
         <section class="top-bar-section">
                 <!-- Right Nav Section -->
                 <ul class="center">
-                    <a href="#">Api Docs</a>
+                    <!--<a href="#">Contact</a>-->
                 </ul>
         </section>
     </nav>

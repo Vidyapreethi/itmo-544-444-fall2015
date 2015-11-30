@@ -44,7 +44,7 @@ $sql_config = "CREATE TABLE cloud_gallery_config
 (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 config_key Varchar(20),
-config_value Varchar(80), 
+config_value Varchar(80)
 )";
 $retVal3 = $link->query($sql_config);
 if($retVal3 === TRUE) {
