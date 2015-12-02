@@ -3,6 +3,20 @@ session_start();
 include 'header.php';
 ?>
 </p></p>
+<?php
+require 'vendor/autoload.php';
+require 'resources/library/db.php';
+
+if(isReadOnlyMode()) {
+?>
+
+<h3 center> Read Only Mode has been enabled. Photo uploads are temporarily disabled. You can still view the gallery. <br/>
+Please click <a href="gallery.php">here</a> to navigate to the Gallery or use navigation menu to navigate to any other location</h3>
+
+<?php
+} else {
+?>
+
 <form enctype="multipart/form-data" action="result.php" method="POST">
 	<div class="row">
 		<div class="small-8 columns">
@@ -20,6 +34,9 @@ include 'header.php';
         </div>
     </div>
 </form>
+
 <?php
+}
+
 include 'footer.php';
 ?>
