@@ -29,7 +29,7 @@ while($row = mysqli_fetch_array($res)){
 // ********************************
 system("mkdir /tmp/$now/");
 foreach($alldb as $db){
-        $cmd = "mysqldump $db -h ".getDbHost()." -u controller -p ilovebunnies > /tmp/{$now}/$db.sql";
+        $cmd = "mysqldump $db -h ".getDbHost()." -u controller -pilovebunnies > /tmp/{$now}/$db.sql";
         deb("Doing: $cmd");
         system($cmd);
 }
