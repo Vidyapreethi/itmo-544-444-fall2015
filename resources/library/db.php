@@ -1,30 +1,36 @@
 <?php
 
+function getDbHost(){
+	$rds = new Aws\Rds\RdsClient([
+		'version' => 'latest',
+		'region'  => 'us-east-1'
+	]);
+
+    	$result = $rds->describeDBInstances([
+        	'DBInstanceIdentifier' => 'pvp-db-mp',
+    	]);
+
+    	$endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
+
+	return $endpoint;
+}
+
 function getDbConn() {
 
-    $rds = new Aws\Rds\RdsClient([
-        'version' => 'latest',
-        'region'  => 'us-east-1'
-    ]);
+    	$endpoint = getDbHost();
 
-    $result = $rds->describeDBInstances([
-        'DBInstanceIdentifier' => 'pvp-db-mp',
-    ]);
+    	//print "</p>============</p>EndPoint: ". $endpoint . "</p>================</p>";
 
-    $endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
+    	$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error " . mysqli_connect_error($link));
 
-    //print "</p>============</p>EndPoint: ". $endpoint . "</p>================</p>";
-
-    $link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error " . mysqli_connect_error($link));
-
-    return $link;
+    	return $link;
 }
 
 function isSubscribed($email) {
 
 	$email = strtolower($email);
 
-    $conn = getDbConn();
+	$conn = getDbConn();
 
 	$sql = "SELECT * FROM items where email='".$email."' and issubscribed=1";
 	
@@ -45,7 +51,7 @@ function setSubscribed($email) {
 
 	$email = strtolower($email);
 		
-    $conn = getDbConn();
+	$conn = getDbConn();
 
 	$sql = "UPDATE items SET issubscribed=1 WHERE email='".$email."'";
 
@@ -60,7 +66,7 @@ function setSubscribed($email) {
 
 function isReadOnlyMode() {
 
-    $conn = getDbConn();
+	$conn = getDbConn();
 
 	$sql = "SELECT * FROM cloud_gallery_config WHERE config_key='IS_READ_ONLY_MODE' AND config_value='1'";
 	
@@ -79,7 +85,7 @@ function isReadOnlyMode() {
 
 function toggleMode() {
 
-    $conn = getDbConn();
+	$conn = getDbConn();
 
 	$sql = "SELECT * FROM cloud_gallery_config WHERE config_key='IS_READ_ONLY_MODE'";
 	
