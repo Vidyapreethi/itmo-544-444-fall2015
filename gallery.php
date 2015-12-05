@@ -41,5 +41,10 @@ while ($row = $res->fetch_assoc()) {
 echo "</div>";
 
 $link->close();
-include 'footer.php';
+//include 'footer.php';
 ?>
+<script>
+      $(document).foundation();
+    </script>
+</body>
+</html>

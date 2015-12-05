@@ -39,7 +39,7 @@
                             <ul class="dropdown">
                                 <li><a href="account.php" >Account Details</a></li>
 								<li><a href="gallery.php" >My Gallery</a></li>
-                                <li><a href="items.php" >View All Uploads</a></li>
+                                <li><a href="upload.php" >Upload a file</a></li>
                             </ul>
                         </li>
                     
