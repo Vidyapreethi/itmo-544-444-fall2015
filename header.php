@@ -28,8 +28,7 @@
                         <li class="has-dropdown">
                             <a href="#">Admin Actions</a>
                             <ul class="dropdown">
-                                <li><a href="setup.php">Setup Database</a></li>
-								<li><a href="introspection.php">Introspection</a></li>
+                               <li><a href="introspection.php">Introspection</a></li>
                             </ul>
                         </li>
                     

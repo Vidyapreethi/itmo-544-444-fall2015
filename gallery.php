@@ -2,6 +2,11 @@
 session_start();
 include 'header.php';
 ?>
+	<!-- Foundation.js -->
+	<script>
+      		$(document).foundation();
+    	</script>
+
 	<!-- jQuery -->
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
@@ -43,8 +48,5 @@ echo "</div>";
 $link->close();
 //include 'footer.php';
 ?>
-<script>
-      $(document).foundation();
-    </script>
-</body>
+	</body>
 </html>
