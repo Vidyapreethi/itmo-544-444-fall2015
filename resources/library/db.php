@@ -1,18 +1,22 @@
 <?php
 
-function getDbHost(){
+function getDbHostForIdentifier($dbIdentifier) {
 	$rds = new Aws\Rds\RdsClient([
 		'version' => 'latest',
 		'region'  => 'us-east-1'
 	]);
 
     	$result = $rds->describeDBInstances([
-        	'DBInstanceIdentifier' => 'pvp-db-mp',
+        	'DBInstanceIdentifier' => $dbIdentifier,
     	]);
 
     	$endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
 
 	return $endpoint;
+}
+
+function getDbHost(){
+	return getDbHostForIdentifier('pvp-db-mp');
 }
 
 function getDbConn() {

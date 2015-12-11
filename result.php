@@ -6,8 +6,6 @@ include 'header.php';
 $uploaddir = '/tmp/';
 $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
-$testimage=new Imagick('images/IIT_Scarlet_Hawks.svg.png');
-
 echo '<pre>';
 if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
     echo "File is valid, and was successfully uploaded.\n";
@@ -16,6 +14,11 @@ if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
 }
 print_r($_FILES);
 print "</pre>";
+
+$testimagefilename = $uploadfile.'_magick';
+$testimage=new Imagick($uploadfile);
+$testimage->thumbnailImage(100, 0);
+$testimage->writeImages($testimagefilename,false);
 
 require 'vendor/autoload.php';
 require 'resources/library/db.php';
@@ -48,6 +51,16 @@ $result = $s3->putObject([
 
 $url = $result['ObjectURL'];
 
+$resultthumb = $s3->putObject([
+    'ACL' => 'public-read',
+    'Bucket' => $bucket,
+     'Expires' => gmdate("D, d M Y H:i:s T", strtotime("+1 day")),
+   'Key' => $testimagefilename,
+        'SourceFile' => $testimagefilename
+]);
+
+$urlthumb = $resultthumb['ObjectURL'];
+
 $link = getDbConn();
 
 if (!($stmt = $link->prepare("INSERT INTO items (id, email,phone,filename,s3rawurl,s3finishedurl,status,issubscribed) VALUES (NULL,?,?,?,?,?,?,?)"))) {	
@@ -57,7 +70,7 @@ $email = $_SESSION["email"];
 $phone = $_SESSION['phone'];
 $s3rawurl = $url; //  $result['ObjectURL']; from above
 $filename = basename($_FILES['userfile']['name']);
-$s3finishedurl = "none";
+$s3finishedurl = $urlthumb;
 $status =0;
 $issubscribed=0;
 $stmt->bind_param("sssssii",$email,$phone,$filename,$s3rawurl,$s3finishedurl,$status,$issubscribed);
