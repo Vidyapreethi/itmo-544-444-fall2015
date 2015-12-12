@@ -22,7 +22,7 @@ echo "Entered email:  ".$email;
 require 'vendor/autoload.php';
 require 'resources/library/db.php';
 
-$link = getDbConn();
+$link = getDbReadConn();
 
 
 //below line is unsafe - $email is not checked for SQL injection -- don't do this in real life or use an ORM instead

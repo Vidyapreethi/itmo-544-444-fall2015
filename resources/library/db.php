@@ -19,9 +19,24 @@ function getDbHost(){
 	return getDbHostForIdentifier('pvp-db-mp');
 }
 
+function getDbReadHost(){
+	return getDbHostForIdentifier('pvpdbreplica');
+}
+
 function getDbConn() {
 
     	$endpoint = getDbHost();
+
+    	//print "</p>============</p>EndPoint: ". $endpoint . "</p>================</p>";
+
+    	$link = mysqli_connect($endpoint,"controller","ilovebunnies","customerrecords") or die("Error " . mysqli_connect_error($link));
+
+    	return $link;
+}
+
+function getDbReadConn() {
+
+    	$endpoint = getDbReadHost();
 
     	//print "</p>============</p>EndPoint: ". $endpoint . "</p>================</p>";
 
