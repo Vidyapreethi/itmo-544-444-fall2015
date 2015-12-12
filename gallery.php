@@ -25,25 +25,20 @@ require 'resources/library/db.php';
 $link = getDbReadConn();
 
 
-//below line is unsafe - $email is not checked for SQL injection -- don't do this in real life or use an ORM instead
 $link->real_query("SELECT * FROM items WHERE email = '$email'");
 
 $res = $link->use_result();
 
 echo "<p/>";
 echo "Result set order:\n";
+echo "<div class=\"fotorama\" data-nav=\"thumbs\">";
 
-//echo "<div class=\"fotorama\" data-width=\"700\" data-ratio=\"700/467\" data-max-width=\"100%\">";
-echo "<div class=\"fotorama\">";
+//echo "<div class="fotorama" data-nav="thumbs">";
 while ($row = $res->fetch_assoc()) {
-    
-  echo "<img src =\" " . $row['s3rawurl'] . "\" />";
-
-    //echo "<img src =\"" .$row['s3finishedurl'] . "\"/>";#Finished URL not set
-  //  echo "<p>".$row['id'] . "Email: " . $row['email']."</p>";
+echo "<a href =\" " . $row['s3rawurl'] . "\" ><img src =\"" .$row['s3finishedurl'] . "\"/></a>";
 }
-
 echo "</div>";
+
 
 $link->close();
 //include 'footer.php';
